@@ -1,6 +1,6 @@
 from snippets.models import (
     Snippet,
-    
+    Person,
 )
 from snippets.serializers import SnippetSerializer
 from rest_framework import mixins
@@ -55,12 +55,12 @@ class SnippetDetail(mixins.RetrieveModelMixin,
 
 class UserList(generics.ListAPIView):
     queryset = User.objects.all()
-    serializer_class = UserSerializer
+    serializer_class = PersonSerializer
 
 
-# class UserCreate(generics.CreateAPIView):
-#     queryset = Person.objects.all()
-#     serializer_class = PersonSerializer    
+class UserCreate(generics.CreateAPIView):
+    queryset = Person.objects.all()
+    serializer_class = PersonSerializer    
 
 
 class UserDetail(generics.RetrieveAPIView):

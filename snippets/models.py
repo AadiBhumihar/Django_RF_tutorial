@@ -7,7 +7,7 @@ class Snippet(models.Model):
     code = models.TextField()
     linenos = models.BooleanField(default=False)
 
-    owner = models.ForeignKey('auth.User', related_name='snippets',\
+    person = models.ForeignKey('snippets.person.user', related_name='snippets',\
                              on_delete=models.CASCADE,null=True,blank=True)
     highlighted = models.TextField(null=True,blank=True)
 

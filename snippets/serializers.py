@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from snippets.models import (
-    Snippet )
+    Snippet ,
+    Person,)
 from django.contrib.auth.models import User
 
 

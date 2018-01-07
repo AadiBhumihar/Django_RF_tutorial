@@ -7,16 +7,15 @@ class Snippet(models.Model):
     code = models.TextField()
     linenos = models.BooleanField(default=False)
 
-    person = models.ForeignKey('snippets.person.user', related_name='snippets',\
-                             on_delete=models.CASCADE,null=True,blank=True)
+    owner = models.ForeignKey("auth.user", related_name='snippets',null=True,blank=True)
     highlighted = models.TextField(null=True,blank=True)
 
     class Meta:
         ordering = ('created',)
 
- class Person(models.Model):
-     user = models.OneToOneField(User,null=False,blank=False,related_name="person")
-     name = models.CharField(max_length=100,null=False,blank=False)
+# class Person(models.Model):
+#     user = models.OneToOneField(User,null=False,blank=False,related_name="person")
+#     name = models.CharField(max_length=100,null=False,blank=False)
 
-     def __unicode__(self):
-         return "Username is {}".format(self.name)
+#     def __unicode__(self):
+#         return "Username is {}".format(self.name)

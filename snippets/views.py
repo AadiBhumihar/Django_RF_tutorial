@@ -1,13 +1,15 @@
 from snippets.models import (
     Snippet,
-    Person,
+    
 )
-from snippets.serializers import SnippetSerializer
+from snippets.serializers import (
+    SnippetSerializer ,
+    UserSerializer
+)
+
 from rest_framework import mixins
 from rest_framework import generics
 from django.contrib.auth.models import User
-from snippets.serializers import PersonSerializer
-from snippets.serializers import UserSerializer
 from rest_framework import permissions
 from snippets.permissions import IsOwnerOrReadOnly
 
@@ -19,8 +21,8 @@ class SnippetList(mixins.ListModelMixin,
     queryset = Snippet.objects.all()
     serializer_class = SnippetSerializer
     
-    # permission_classes = (permissions.IsAuthenticatedOrReadOnly,
-    #                   IsOwnerOrReadOnly,)
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,
+                       IsOwnerOrReadOnly,)
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
@@ -36,8 +38,8 @@ class SnippetDetail(mixins.RetrieveModelMixin,
                     mixins.DestroyModelMixin,
                     generics.GenericAPIView):
 
-    # permission_classes = (permissions.IsAuthenticatedOrReadOnly,
-    #                   IsOwnerOrReadOnly,)
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,
+                       IsOwnerOrReadOnly,)
 
     queryset = Snippet.objects.all()
     serializer_class = SnippetSerializer
@@ -53,15 +55,26 @@ class SnippetDetail(mixins.RetrieveModelMixin,
 
 
 
-class UserList(generics.ListAPIView):
+class UserList(generics.ListAPIView ,):
     queryset = User.objects.all()
-    serializer_class = PersonSerializer
+    serializer_class = UserSerializer
 
+# class UserCreate( mixins.ListModelMixin ,
+#                 mixins.CreateModelMixin ,
+#                 generics.GenericAPIView):
 
-class UserCreate(generics.CreateAPIView):
-    queryset = Person.objects.all()
-    serializer_class = PersonSerializer    
+#     queryset = Person.objects.all()
+#     serializer_class = CreateSerializer
 
+#     def get(self, request, *args, **kwargs):
+#         return self.list(request, *args, **kwargs)
+
+#     def post(self, request, *args, **kwargs):
+#         return self.create(request, *args, **kwargs)
+
+#     def perform_create(self, serializer):
+#         serializer.save(person=self.Person.user)
+   
 
 class UserDetail(generics.RetrieveAPIView):
     queryset = User.objects.all()

@@ -1,8 +1,8 @@
 from django.contrib import admin
 from .models import (
-    Snippet,
-    Person
+    Snippet
 )
+from django.contrib.auth.models import User
 
 # Register your models here.
 
@@ -13,7 +13,6 @@ class SnippetInline(admin.TabularInline):
 
 class PersonAdmin(admin.ModelAdmin):
     inlines = [
-        SnippetInline
+        User
     ]
 admin.site.register(Snippet)
-admin.site.register(Person,PersonAdmin)

@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import (
     Snippet,
-    
+    Person
 )
 
 # Register your models here.
@@ -16,4 +16,4 @@ class PersonAdmin(admin.ModelAdmin):
         SnippetInline
     ]
 admin.site.register(Snippet)
-#admin.site.register(Person,PersonAdmin)
+admin.site.register(Person,PersonAdmin)

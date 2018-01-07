@@ -12,12 +12,12 @@ class SnippetSerializer(serializers.ModelSerializer):
         owner = serializers.ReadOnlyField(source='owner.username')
         
 
-# class PersonSerializer(serializers.ModelSerializer):
-#     snippets = serializers.PrimaryKeyRelatedField(many=True, queryset=Snippet.objects.all())
+class PersonSerializer(serializers.ModelSerializer):
+    snippets = serializers.PrimaryKeyRelatedField(many=True, queryset=Snippet.objects.all())
 
-#     class Meta:
-#         model = Person
-#         fields = ('id', 'name', 'snippets')
+    class Meta:
+        model = Person
+        fields = ('id', 'name', 'snippets')
 
 
 class UserSerializer(serializers.ModelSerializer):

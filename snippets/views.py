@@ -28,7 +28,7 @@ class SnippetList(mixins.ListModelMixin,
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)
 
-   def perform_create(self, serializer):
+    def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
 
 class SnippetDetail(mixins.RetrieveModelMixin,

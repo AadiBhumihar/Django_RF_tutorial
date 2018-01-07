@@ -14,9 +14,9 @@ class Snippet(models.Model):
     class Meta:
         ordering = ('created',)
 
-# class Person(models.Model):
-#     user = models.OneToOneField(User,null=False,blank=False,related_name="person")
-#     name = models.CharField(max_length=100,null=False,blank=False)
+ class Person(models.Model):
+     user = models.OneToOneField(User,null=False,blank=False,related_name="person")
+     name = models.CharField(max_length=100,null=False,blank=False)
 
-#     def __unicode__(self):
-#         return "Username is {}".format(self.name)
+     def __unicode__(self):
+         return "Username is {}".format(self.name)
